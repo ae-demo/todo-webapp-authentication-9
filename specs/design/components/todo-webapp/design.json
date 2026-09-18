@@ -7,11 +7,51 @@
   "appPath": "todo-webapp",
   "entrypoint": "deployment/web-application",
   "exposure": "internet",
-  "dependencies": [
-    { "kind": "component", "name": "todo-api", "description": "Creates, lists, and completes the signed-in user's todos." },
-    { "kind": "platform-resource", "name": "user-auth", "resourceType": "thunder-app", "description": "Signs the user in through Thunder and carries the token to todo-api." }
+  "stories": [
+    1,
+    2,
+    3,
+    4,
+    5
   ],
   "description": "Single-page React app where a signed-in user manages their own private todo list: create a todo, view the list, and mark items complete or reopen them. Does not store any data itself — all persistence goes through todo-api.",
-  "stories": [1, 2, 3, 4, 5],
-  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+  "dependencies": [
+    {
+      "kind": "component",
+      "name": "todo-api",
+      "description": "Creates, lists, and completes the signed-in user's todos.",
+      "wiring": {
+        "endpoint": {
+          "component": "todo-webapp-authentication-9-todo-api",
+          "name": "http",
+          "visibility": "project",
+          "envBindings": {
+            "address": "TODO_API_URL"
+          }
+        }
+      }
+    },
+    {
+      "kind": "platform-resource",
+      "name": "user-auth",
+      "description": "Signs the user in through Thunder and carries the token to todo-api.",
+      "resourceType": "thunder-app",
+      "wiring": {
+        "ref": "todo-webapp-authe-ec06c103",
+        "envBindings": {
+          "client_id": "USER_AUTH_CLIENT_ID",
+          "issuer": "USER_AUTH_ISSUER",
+          "jwks_url": "USER_AUTH_JWKS_URL",
+          "resource": "USER_AUTH_RESOURCE",
+          "scopes": "USER_AUTH_SCOPES"
+        }
+      }
+    }
+  ],
+  "skillsPinned": [
+    "wireframes",
+    "react-webapp",
+    "oxygen-ui-design-system",
+    "thunder-authentication"
+  ]
 }
