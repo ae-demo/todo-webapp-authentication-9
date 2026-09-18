@@ -1,0 +1,17 @@
+{
+  "name": "todo-api",
+  "type": "service",
+  "version": "0.1.0",
+  "language": "Ballerina",
+  "buildpack": "docker",
+  "appPath": "todo-api",
+  "entrypoint": "deployment/service",
+  "exposure": "intranet",
+  "dependencies": [
+    { "kind": "platform-resource", "name": "todo-db", "resourceType": "postgres-cnpg", "description": "Stores each user's todo entries." },
+    { "kind": "platform-resource", "name": "user-auth", "resourceType": "thunder-app", "description": "Verifies the gateway's signed assertion for every request and resolves the caller's identity." }
+  ],
+  "description": "Backend service owning the todo entity: create, list, and complete/reopen a todo, scoped strictly to the signed-in caller (resolved from the gateway assertion, never a client-supplied id). Persists entries in todo-db. Does not support editing a todo's title or deleting a todo, and sends no notifications.",
+  "stories": [2, 3, 4, 5],
+  "skillsPinned": ["openapi-conventions", "ballerina", "thunder-authentication", "api-management"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "todo-webapp",
+  "type": "web-application",
+  "version": "0.1.0",
+  "language": "TypeScript",
+  "buildpack": "docker",
+  "appPath": "todo-webapp",
+  "entrypoint": "deployment/web-application",
+  "exposure": "internet",
+  "dependencies": [
+    { "kind": "component", "name": "todo-api", "description": "Creates, lists, and completes the signed-in user's todos." },
+    { "kind": "platform-resource", "name": "user-auth", "resourceType": "thunder-app", "description": "Signs the user in through Thunder and carries the token to todo-api." }
+  ],
+  "description": "Single-page React app where a signed-in user manages their own private todo list: create a todo, view the list, and mark items complete or reopen them. Does not store any data itself — all persistence goes through todo-api.",
+  "stories": [1, 2, 3, 4, 5],
+  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "todo-db",
+  "type": "database",
+  "version": "0.1.0",
+  "language": "N/A",
+  "buildpack": "docker",
+  "appPath": "todo-db",
+  "entrypoint": "deployment/service",
+  "exposure": "intranet",
+  "dependencies": [],
+  "description": "Managed PostgreSQL database provisioned by the platform, holding the todo table. Owned and accessed only by todo-api.",
+  "stories": [5],
+  "skillsPinned": []
+}
